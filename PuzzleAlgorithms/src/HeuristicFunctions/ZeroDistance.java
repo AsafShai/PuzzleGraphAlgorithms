@@ -10,5 +10,10 @@ public class ZeroDistance implements Function<PuzzleNode, Integer> {
 	public Integer apply(PuzzleNode t) {
 		return 0;
 	}
+	
+	@Override
+	public String toString() {
+		return "Zero distance";
+	}
 
 }

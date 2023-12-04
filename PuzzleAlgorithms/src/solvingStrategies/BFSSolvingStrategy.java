@@ -1,5 +1,6 @@
 package solvingStrategies;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -7,14 +8,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.function.Function;
 
 import PuzzleGame.PuzzleNode;
 import utils.Util;
 
 public class BFSSolvingStrategy extends SolvingStrartegy {
+	
+	private static final String NAME = "BFS";
+	
+	public BFSSolvingStrategy() {
+		openedSet = new HashSet<PuzzleNode>();
+	}
+
 
 	@Override
-	public void solvePuzzle(PuzzleNode startNode) {
+	public List<PuzzleNode> solvePuzzle(PuzzleNode startNode) {
 		Queue<PuzzleNode> queue = new LinkedList<>();
 		Set<PuzzleNode> visited = new HashSet<>();
 		Map<PuzzleNode, PuzzleNode> parentMap = new HashMap<>();
@@ -25,13 +34,14 @@ public class BFSSolvingStrategy extends SolvingStrartegy {
 
 		while (!queue.isEmpty()) {
 			PuzzleNode currentNode = queue.poll();
+			openedSet.add(currentNode);
 			if (currentNode.equals(Util.getSolvedBySize(currentNode.getBoard().length))) {
-				// TODO: return solved
+				return reconstructPath(parentMap, currentNode);
 			}
-			// Process the current node as needed
 
 			List<PuzzleNode> neighbors = currentNode.getNeighbors();
 			for (PuzzleNode neighbor : neighbors) {
+				openedSet.add(neighbor);
 				if (!visited.contains(neighbor)) {
 					queue.add(neighbor);
 					visited.add(neighbor);
@@ -39,6 +49,12 @@ public class BFSSolvingStrategy extends SolvingStrartegy {
 				}
 			}
 		}
+		return Collections.emptyList();
+	}
+
+	@Override
+	public String getAlgorithmName() {
+		return NAME;
 	}
 
 }

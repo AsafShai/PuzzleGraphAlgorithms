@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 import PuzzleGame.PuzzleNode;
 
-public class ManhattanDistance implements Function<PuzzleNode, Integer>{
+public class ManhattanDistance implements Function<PuzzleNode, Integer> {
 
 	@Override
 	public Integer apply(PuzzleNode puzzleNode) {
@@ -20,6 +20,11 @@ public class ManhattanDistance implements Function<PuzzleNode, Integer>{
 			}
 		}
 		return distance;
+	}
+
+	@Override
+	public String toString() {
+		return "Manhattan distance";
 	}
 
 }

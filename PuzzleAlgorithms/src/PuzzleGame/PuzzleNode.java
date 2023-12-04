@@ -7,35 +7,13 @@ import java.util.List;
 public class PuzzleNode {
 
 	private int[][] board;
-	private int f;
-	private int g;
 
 	public PuzzleNode(int[][] board) {
 		this.board = board;
-		f = 0;
-		g = 0;
 	}
 
 	public int[][] getBoard() {
 		return board;
-	}
-	
-	
-
-	public int getF() {
-		return f;
-	}
-
-	public void setF(int f) {
-		this.f = f;
-	}
-
-	public int getG() {
-		return g;
-	}
-
-	public void setG(int g) {
-		this.g = g;
 	}
 
 	public List<PuzzleNode> getNeighbors() {
@@ -102,9 +80,8 @@ public class PuzzleNode {
 		if (getClass() != obj.getClass())
 			return false;
 		PuzzleNode other = (PuzzleNode) obj;
-		if (!Arrays.deepEquals(board, other.board))
-			return false;
-		return true;
+		return Arrays.deepEquals(board, other.board);
+			
 	}
 
 	@Override

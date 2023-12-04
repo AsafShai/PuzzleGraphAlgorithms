@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.List;
+
 import PuzzleGame.PuzzleNode;
 
 public class Util {
@@ -17,5 +19,11 @@ public class Util {
 			return new PuzzleNode(SOLVED_24_BOARD);
 		int[][] emptyBoard = { { 0 } };
 		return new PuzzleNode(emptyBoard);
+	}
+	
+	public static void printPath(List<PuzzleNode> path) {
+		for (PuzzleNode puzzleNode : path) {
+			System.out.println(puzzleNode);
+		}
 	}
 }
