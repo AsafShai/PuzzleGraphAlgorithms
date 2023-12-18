@@ -1,8 +1,8 @@
-package HeuristicFunctions;
+package heuristicFunctions;
 
 import java.util.function.Function;
 
-import PuzzleGame.PuzzleNode;
+import puzzleGame.PuzzleNode;
 
 public class ManhattanDistance implements Function<PuzzleNode, Integer> {
 

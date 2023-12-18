@@ -2,7 +2,7 @@ package utils;
 
 import java.util.List;
 
-import PuzzleGame.PuzzleNode;
+import puzzleGame.PuzzleNode;
 
 public class Util {
 	private static final int[][] SOLVED_15_BOARD = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, { 9, 10, 11, 12 },

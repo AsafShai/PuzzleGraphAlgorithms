@@ -1,4 +1,4 @@
-package PuzzleGame;
+package puzzleGame;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +34,6 @@ public class PuzzleNode {
 	}
 
 	/**
-	 * @param neighbors
 	 * @param blankRow
 	 * @param blankCol
 	 * @return

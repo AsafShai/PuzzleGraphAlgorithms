@@ -1,4 +1,4 @@
-package solvingStrategies;
+package solvingAlgorithms;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import PuzzleGame.PuzzleNode;
+import puzzleGame.PuzzleNode;
 
-public abstract class SolvingStrartegy {
+public abstract class PuzzleSolvingAlgorithm {
 	protected Set<PuzzleNode> openedSet;
 
 	public abstract List<PuzzleNode> solvePuzzle(PuzzleNode startNode);

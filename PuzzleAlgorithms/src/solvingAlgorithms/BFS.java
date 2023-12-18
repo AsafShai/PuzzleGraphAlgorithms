@@ -1,4 +1,4 @@
-package solvingStrategies;
+package solvingAlgorithms;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,17 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-import java.util.function.Function;
 
-import PuzzleGame.PuzzleNode;
+import puzzleGame.PuzzleNode;
 import utils.Util;
 
-public class BFSSolvingStrategy extends SolvingStrartegy {
-	
+public class BFS extends PuzzleSolvingAlgorithm {
+
 	private static final String NAME = "BFS";
-	
-	public BFSSolvingStrategy() {
-		openedSet = new HashSet<PuzzleNode>();
+
+	public BFS() {
+		openedSet = new HashSet<>();
 	}
 
 

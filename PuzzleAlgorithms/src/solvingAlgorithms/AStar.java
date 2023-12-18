@@ -1,4 +1,4 @@
-package solvingStrategies;
+package solvingAlgorithms;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,20 +10,20 @@ import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.function.Function;
 
-import PuzzleGame.PuzzleNode;
+import puzzleGame.PuzzleNode;
 import utils.Util;
 
-public class AStarSolvingStrategy extends SolvingStrartegy {
+public class AStar extends PuzzleSolvingAlgorithm {
 	private static final String NAME = "A*";
 	private Function<PuzzleNode, Integer> heuristic;
 	private Map<PuzzleNode, Integer> gScore;
 	private Map<PuzzleNode, Integer> fScore;
 
-	public AStarSolvingStrategy(Function<PuzzleNode, Integer> heuristic) {
+	public AStar(Function<PuzzleNode, Integer> heuristic) {
 		this.heuristic = heuristic;
-		gScore = new HashMap<PuzzleNode, Integer>();
-		fScore = new HashMap<PuzzleNode, Integer>();
-		openedSet = new HashSet<PuzzleNode>();
+		gScore = new HashMap<>();
+		fScore = new HashMap<>();
+		openedSet = new HashSet<>();
 	}
 
 	private void clearScores() {
