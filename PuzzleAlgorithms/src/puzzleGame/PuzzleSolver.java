@@ -1,5 +1,6 @@
 package puzzleGame;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class PuzzleSolver {
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static PuzzleNode getInitialBoardManual(int size) {
+		System.out.println("Choose " + size + "numbers");
 		int dimensions = (int) (Math.sqrt(size));
 		int[][] board = new int[dimensions][dimensions];
 		for (int i = 0; i < dimensions; i++) {
@@ -33,30 +35,35 @@ public class PuzzleSolver {
 
 	public static void analyseAlgorithms(List<PuzzleSolvingAlgorithm> puzzleSolvingAlgorithms, int numberOfLoops, int puzzleSize,
 										 int randomSteps) {
-		for (PuzzleSolvingAlgorithm solvingStrartegy : puzzleSolvingAlgorithms) {
-			analyseAlgorithm(solvingStrartegy, numberOfLoops, puzzleSize, randomSteps);
+		List<PuzzleNode> randomBoards = new ArrayList<>();
+		for (int i = 0; i < numberOfLoops; i++) {
+			randomBoards.add(PuzzleSolver.getInitialBoardRandom(puzzleSize, randomSteps));
+		}
+		for (PuzzleSolvingAlgorithm solvingAlgorithm : puzzleSolvingAlgorithms) {
+			analyseAlgorithm(solvingAlgorithm, randomBoards);
 			System.out.println();
 		}
 	}
 
-	private static void analyseAlgorithm(PuzzleSolvingAlgorithm puzzleSolvingAlgorithms, int numberOfLoops, int puzzleSize,
-										   int randomSteps) {
+	private static void analyseAlgorithm(PuzzleSolvingAlgorithm puzzleSolvingAlgorithm, List<PuzzleNode> puzzleNodes) {
 		long totalMilliseconds = 0;
 		int totalPathLength = 0;
 		int totalNodesDiscovered = 0;
 
-		for (int i = 0; i < numberOfLoops; i++) {
-			PuzzleNode node = PuzzleSolver.getInitialBoardRandom(puzzleSize, randomSteps);
+		int numberOfLoops = puzzleNodes.size();
+
+		for (PuzzleNode puzzleNode: puzzleNodes) {
 			long startTime = System.currentTimeMillis();
-			List<PuzzleNode> resultPath = puzzleSolvingAlgorithms.solvePuzzle(node);
+			List<PuzzleNode> resultPath = puzzleSolvingAlgorithm.solvePuzzle(puzzleNode);
 			long endTime = System.currentTimeMillis();
 			totalMilliseconds += endTime - startTime;
 			totalPathLength += resultPath.size();
-			totalNodesDiscovered += puzzleSolvingAlgorithms.countOpenedNodes();
+			totalNodesDiscovered += puzzleSolvingAlgorithm.countOpenedNodes();
 		}
-		System.out.println("Algorithm: " + puzzleSolvingAlgorithms.getAlgorithmName());
+		System.out.println("Algorithm: " + puzzleSolvingAlgorithm.getAlgorithmName());
 		System.out.println("Average time milliseconds: " + totalMilliseconds / numberOfLoops);
 		System.out.println("Average discovered nodes: " + totalNodesDiscovered /  numberOfLoops);
 		System.out.println("Average path length: " + totalPathLength / numberOfLoops);
 	}
+
 }
